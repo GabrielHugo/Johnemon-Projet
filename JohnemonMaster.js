@@ -1,3 +1,5 @@
+const johnemonWorld = require('./JohnemonWorld')
+const Game = require('./Game')
 
 class JohnemonMaster {
   constructor(name) {
@@ -9,11 +11,14 @@ class JohnemonMaster {
   }
 
 
-  renameJohnemon(johnemon) {
-    
+  renameJohnemon(johnemon, newName) {
+    if (typeof newName === 'string' && newName.trim() !== '') {
+      johnemon.name = newName;
+      console.log(`Name is been changed in ${johnemon.name}`);
+    } else {
+      console.log('Invalid name.')
+    }
   }
-
-
 
   healJohnemon(johnemon) {
     
@@ -33,4 +38,4 @@ class JohnemonMaster {
   }
 }
 
-module.exports = JohnemonMaster
+module.exports = JohnemonMaster;

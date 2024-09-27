@@ -1,40 +1,42 @@
+const proposeFirstJohnemon = require('./Game')
+
 const students = [
-  'Saks', 'hat',
-  'Thie', 'rry',
-  'Art', 'hur',
-  'Nou', 'héila',
-  'Yor', 'die',
-  'Si', 'mon',
-  'Nico', 'las',
-  'Alex', 'andre',
-  'Piet', 'ro',
-  'Ele', 'na',
-  'Jo', 'ao',
-  'Liv', 'iu',
-  'My', 'riam',
-  'Jor', 'dan',
-  'In', 'na',
-  'Haz', 'ar',
-  'Arg', 'jent',
-  'Antoi', 'ne-Alexandr',
-  'Ari', 'anne',
-  'Khy', 'ati',
-  'Den', 'is',
-  'Yul', 'iia',
-  'Do', 'ra',
-  'Jun', 'ior',
-  'Jessi', 'ca',
-  'Yav', 'anna',
-  'Lou', 'ise',
-  'Lí', 'lia',
-  'Jor', 'ina',
-  'Via', 'cheslav',
-  'Zach', 'arie',
-  'O', 'leg'
+  'Sakshat',
+  'Thierry',
+  'Arthur',
+  'Nouhéila',
+  'Yordie',
+  'Simon',
+  'Nicolas',
+  'Alexandre',
+  'Pietro',
+  'Elena',
+  'Joao',
+  'Liviu',
+  'Myriam',
+  'Jordan',
+  'Inna',
+  'Hazar',
+  'Argjent',
+  'Antoine-Alexandr',
+  'Arianne',
+  'Khyati',
+  'Denis',
+  'Yuliia',
+  'Dora',
+  'Junior',
+  'Jessica',
+  'Yavanna',
+  'Louise',
+  'Lília',
+  'Jorina',
+  'Viacheslav',
+  'Zacharie',
+  'Oleg'
 ]
 
 class Johnemon {
-  constructor() {
+  constructor(type) {
     this.name = this.generateRandomName();
     this.level = 1;
     this.experienceMeter = 0;
@@ -42,12 +44,13 @@ class Johnemon {
     this.defenseRange = this.getRandomNumber(1, 3);
     this.healthPool = this.getRandomNumber(10, 30);
     this.catchPhrase = this.generateCatchPhrase();
+    this.appearance = this.generateAppearance();
+    this.type = type || this.generateType();  // genere un type aleatoire entre Grass, Fire, Water ou Electric
   }
 
   generateRandomName() {
     const randomStudent1 = students[Math.floor(Math.random() * students.length)];
-    const randomStudent2 = students[Math.floor(Math.random() * students.length)];
-    return `${randomStudent1}${randomStudent2}`;
+    return `${randomStudent1}`;
   }
 
   getRandomNumber(min, max) {
@@ -90,6 +93,27 @@ class Johnemon {
   sayCatchPhrase() {
     console.log(`${this.name} says: "${this.catchPhrase}"`);
   }
+
+  generateAppearance() {
+    return ` 
+      [^(..)^]
+      [,(  ),]
+        V~~V 
+        `
+
+  }
+
+  generateType() {
+  let types = ['Grass', 'Fire', 'Water', 'Electric'];
+  let randomType = Math.floor(Math.random() * types.length);
+  return types[randomType];
+  }
+
+  static isValidType(type) {
+    let validType = ['Grass', 'Fire', 'Water', 'Electric'];
+    return validType.includes(type)
+  }
+
 }
 
-module.exports = Johnemon
+module.exports = Johnemon;
