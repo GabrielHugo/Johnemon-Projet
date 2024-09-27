@@ -30,7 +30,12 @@ class JohnemonMaster {
 
 
   releaseJohnemon(johnemon) {
-    
+    if (collectionJohnemon[johnemon].name !== '') {
+      collectionJohnemon[johnemon].name = null;
+    } else {
+      console.log('You have no Johnemon in ur team');
+      gameMenu();
+    }
   }
 
   showCollection() {

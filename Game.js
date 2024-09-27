@@ -48,7 +48,7 @@ function mainMenu() {
   })
 }
 
-function saveMenu(saveFile) {
+function saveMenu() {
   rl.question(`What's slot do u want use?\n\n1 - slot 1\n\n2 - Slot 2\n\n3 - slot 3\n\n4 - Menu\n\nYour choice: `, (slot) => {
     switch(slot) {
       case '1': saveGameState('save1.json'); break;
@@ -65,23 +65,23 @@ function saveMenu(saveFile) {
 
 
 function gameMenu() {
-  rl.question('What do u want make today\n\n1 - Heal Johnemon\n\n2 - Revive a Johnemon\n\n3 - Release Johnemon\n\n4 - Rename Johnemon\n\n5 - Menu\n\nAnswer: ', (answer) => {
+  rl.question('What do u want make today\n\n1 - Heal Johnemon\n\n2 - Revive a Johnemon\n\n3 - Release Johnemon\n\n4 - Rename Johnemon\n\n5 - Show collection\n\n6 - Menu\n\nAnswer: ', (answer) => {
     switch(answer) {
-      case '1': johnemonMaster.healJohnemon(gameState.collectionJohnemon); 
-      break;
+      case '1': johnemonMaster.healJohnemon(gameState.collectionJohnemon); break;
 
-      case '2': johnemonMaster.reviveJohnemon(gameState.collectionJohnemon);
-      break;
+      case '2': johnemonMaster.reviveJohnemon(gameState.collectionJohnemon); break;
 
-      case '3': gameState.collectionJohnemon;
-      if (gameState.collection) {
+      case '3': gameState.collectionJohnemon.name;
+      if (gameState.collectionJohnemon.name) {
         rl.question(`${gameState.collectionJohnemon} What Johnemon u want release? : `, (release) => {
           johnemonMaster.releaseJohnemon(release);
           saveGameState('save1.json');
         });
+
       } else {
         console.log('No Johnemon to release');
         gameMenu();
+
       }
       break;
 
@@ -90,6 +90,7 @@ function gameMenu() {
         rl.question(`Enter new name: `, (newName) => {
           johnemonMaster.renameJohnemon(gameState.collectionJohnemon, newName);
           saveGameState('save1.json');
+          gameMenu();
         });
       } else {
         console.log('No johnemon to rename');
@@ -97,10 +98,11 @@ function gameMenu() {
       }
       break;
 
-      case '5': mainMenu();
-      break;
-    default: console.log('***Error***');
-    gameMenu();
+      case '5': console.log(johnemonMaster.showCollection(gameState.collectionJohnemon.name)); gameMenu(); break;
+
+      case '6': mainMenu(); break;
+      
+    default: console.log('***Error***'); gameMenu();
     }
   })
 }

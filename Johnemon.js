@@ -104,13 +104,13 @@ class Johnemon {
   }
 
   generateType() {
-  let types = ['Grass', 'Fire', 'Water', 'Electric'];
+  let types = ['Grass', 'Fire', 'Water', 'Electric', 'Normal', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon'];
   let randomType = Math.floor(Math.random() * types.length);
   return types[randomType];
   }
 
   static isValidType(type) {
-    let validType = ['Grass', 'Fire', 'Water', 'Electric'];
+    let validType = ['Grass', 'Fire', 'Water', 'Electric', 'Normal', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon'];
     return validType.includes(type)
   }
 
